@@ -10,19 +10,27 @@
 #include "std_lib_facilities.h"
 
 using namespace std;
-void error(const string s) {
-	throw runtime_error(s);
-}
+
 int main() {
-	try {
-		//int x1 = narrow_cast<int>(2.9);
-		//int x2 = narrow_cast<int>(2.0);
-		char c1 = narrow_cast<char>(1066);
-		//char c2 = narrow_cast<char>(85);
+	vector<double> temps;
+	for (double temp; cin >> temp;) {
+		temps.push_back(temp);
 	}
-	catch (runtime_error& e) {
-		cerr << "b³¹d: " << e.what() << '\n';
+	const double start_max_temp = -1000;
+	const double start_min_temp = 1000;
+	double min_t = start_min_temp;
+	double max_t = start_max_temp;
+	double sum = 0;
+
+	for(double x : temps) {
+		if (x>max_t) max_t = x;
+		if (x<min_t) min_t = x;
+		sum+=x;
 	}
+	cout << "min temp: " << min_t << '\n';
+	cout << "max temp: " << max_t << '\n';
+	cout << "œr. temp: " << sum/temps.size() << '\n';
+
 	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
 	return 0;
 }
